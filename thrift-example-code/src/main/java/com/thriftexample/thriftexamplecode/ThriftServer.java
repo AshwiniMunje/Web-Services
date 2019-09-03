@@ -17,7 +17,7 @@ public class ThriftServer
             Hello.Processor processor = new Hello.Processor(new ServiceImplementation());
             TServer server = new TThreadPoolServer(
                     new TThreadPoolServer.Args(serverTransport).processor(processor));
-            System.out.println("Starting server on port 7911 ...");
+            System.out.println("Starting server on port 8080 ...");
             server.serve();
         }
         catch (TTransportException e)

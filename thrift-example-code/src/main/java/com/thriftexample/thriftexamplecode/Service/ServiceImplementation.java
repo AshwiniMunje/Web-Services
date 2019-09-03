@@ -9,6 +9,7 @@ public class ServiceImplementation implements Hello.Iface {
 
     @Override
     public String hi() throws TException {
+        System.out.println("Running hi() function");
         return "Hello world";
     }
 }
