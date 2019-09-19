@@ -5,7 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Document
+//Mongo database annotation -- Model Class
+@Document("Note")
 public class Note {
     @Id
     private Integer id;
@@ -13,27 +14,16 @@ public class Note {
     private String description;
     private Priority priority;
 
+    public Note() {
+    }
+
     public Note(Integer id, String name, String description, Priority priority) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.priority = priority;
     }
-/*
-    public Note(Integer id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.priority = Priority.low;
-    }
 
-    public Note(Integer id, String name) {
-        this.id = id;
-        this.name = name;
-        this.description = "This is a empty/new note";
-        this.priority = Priority.low;
-    }
-*/
     public Integer getId() {
         return id;
     }

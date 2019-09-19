@@ -17,6 +17,7 @@ public class MongoDBConfig {
         CommandLineRunner commandLineRunner = strings -> {
             noteRepository.save(new Note(1, "Work", "Complete work tasks", Priority.medium));
             noteRepository.save(new Note(2, "Home", "Complete home tasks", Priority.high));
+            noteRepository.save(new Note(3, "Misc", "Complete misc tasks", Priority.low));
         };
         return commandLineRunner;
     }
