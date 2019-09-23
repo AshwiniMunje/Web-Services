@@ -15,9 +15,9 @@ public class MongoDBConfig {
     @Bean
     CommandLineRunner commandLineRunner(NoteRepository noteRepository) {
         CommandLineRunner commandLineRunner = strings -> {
-            noteRepository.save(new Note(1, "Work", "Complete work tasks", Priority.medium));
-            noteRepository.save(new Note(2, "Home", "Complete home tasks", Priority.high));
-            noteRepository.save(new Note(3, "Misc", "Complete misc tasks", Priority.low));
+            noteRepository.save(new Note(1, "Work", "Complete work tasks", Priority.MEDIUM));
+            noteRepository.save(new Note(2, "Home", "Complete home tasks", Priority.HIGH));
+            noteRepository.save(new Note(3, "Misc", "Complete misc tasks", Priority.LOW));
         };
         return commandLineRunner;
     }

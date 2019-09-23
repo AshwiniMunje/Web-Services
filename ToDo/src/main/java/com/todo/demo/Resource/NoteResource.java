@@ -3,8 +3,11 @@ package com.todo.demo.Resource;
 import com.todo.demo.Note.Note;
 import com.todo.demo.Repository.NoteRepository;
 import com.todo.demo.Service.NoteService;
+import com.todo.demo.Service.NoteServiceImplementation;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,9 +18,13 @@ import java.util.logging.Logger;
 public class NoteResource {
 
     //private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     NoteService noteService;
+
+    @Autowired
+    public NoteResource(NoteService noteService) {
+        this.noteService = noteService;
+    }
 
     @GetMapping("/hello")
     public String emptyNote() {
