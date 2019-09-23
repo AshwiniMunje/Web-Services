@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-// Data-Access-Object (DAO) interface
 @Repository
 public interface NoteRepository extends MongoRepository<Note, Integer> {
 

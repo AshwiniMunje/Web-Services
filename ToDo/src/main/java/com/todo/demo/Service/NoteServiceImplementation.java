@@ -1,5 +1,6 @@
 package com.todo.demo.Service;
 
+import com.todo.demo.Dao.NoteDao;
 import com.todo.demo.Note.Note;
 import com.todo.demo.Repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,27 +12,26 @@ import java.util.List;
 public class NoteServiceImplementation implements NoteService {
 
     @Autowired
-    NoteRepository noteRepository;
+    NoteDao noteDao;
 
     @Override
     public void createNote(Note note) {
-        noteRepository.insert(note);
-        //noteRepository.saveAll(note);
+        noteDao.saveNote(note);
     }
 
     @Override
     public List<Note> readNote() {
-        return noteRepository.findAll();
+        return noteDao.read();
     }
 
     @Override
     public void updateNote(Note note) {
-        noteRepository.save(note);
+        noteDao.update(note);
     }
 
     @Override
     public void deleteNote(int id) {
-        noteRepository.deleteById(id);
+        noteDao.deleteNote(id);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.todo.demo.Config;
 
+import com.todo.demo.Dao.NoteDao;
 import com.todo.demo.Note.Note;
 import com.todo.demo.Note.Priority;
 import com.todo.demo.Repository.NoteRepository;
@@ -21,5 +22,6 @@ public class MongoDBConfig {
         };
         return commandLineRunner;
     }
+
 }
 
