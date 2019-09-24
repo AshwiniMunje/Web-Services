@@ -15,8 +15,9 @@ public class NoteDaoImpl implements NoteDao {
     NoteRepository noteRepository;
 
     @Override
-    public void saveNote(Note note) {
+    public int saveNote(Note note) {
         noteRepository.insert(note);
+        return note.getId();
     }
 
     @Override

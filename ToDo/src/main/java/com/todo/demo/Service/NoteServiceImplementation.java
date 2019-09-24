@@ -3,6 +3,9 @@ package com.todo.demo.Service;
 import com.todo.demo.Dao.NoteDao;
 import com.todo.demo.Note.Note;
 import com.todo.demo.Repository.NoteRepository;
+import com.todo.demo.thrift.gen.NoteServiceThrift;
+import com.todo.demo.thrift.gen.NoteThrift;
+import org.apache.thrift.TException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +18,8 @@ public class NoteServiceImplementation implements NoteService {
     NoteDao noteDao;
 
     @Override
-    public void createNote(Note note) {
-        noteDao.saveNote(note);
+    public int createNote(Note note) {
+        return noteDao.saveNote(note);
     }
 
     @Override
@@ -38,6 +41,5 @@ public class NoteServiceImplementation implements NoteService {
     public String sayHello() {
         return "Hello World!";
     }
-
 
 }

@@ -9,7 +9,7 @@ public interface NoteService {
 
     public String sayHello();
 
-    public void createNote(Note note);
+    public int createNote(Note note);
 
     public List<Note> readNote();
 
