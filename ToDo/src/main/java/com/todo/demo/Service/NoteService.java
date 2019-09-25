@@ -9,12 +9,12 @@ public interface NoteService {
 
     public String sayHello();
 
-    public int createNote(Note note);
+    public Note createNote(Note note);
 
     public List<Note> readNote();
 
-    public void updateNote(Note note);
+    public Note updateNote(Note note);
 
-    public void deleteNote(int id);
+    public Note deleteNote(int id);
 
 }

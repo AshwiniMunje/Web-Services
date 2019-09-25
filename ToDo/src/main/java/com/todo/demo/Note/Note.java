@@ -20,55 +20,43 @@ public class Note {
     private String description;
     private Priority priority;
 
-    public Note() {
-    }
-
-    public Note toNote(NoteThrift noteThrift) {
-        Note note = new Note();
-        note.id = noteThrift.getId();
-        note.name = noteThrift.getName();
-        note.description = noteThrift.getDescription();
+    public static Note fromThriftNote(NoteThrift noteThrift) {
         PriorityThrift priorityThrift = noteThrift.getPriority();
+        Priority priority = Priority.LOW;
         switch (priorityThrift) {
             case LOW:
-                note.setPriority(Priority.LOW);
+                priority = Priority.LOW;
                 break;
             case MEDIUM:
-                note.setPriority(Priority.MEDIUM);
+                priority = Priority.MEDIUM;
                 break;
             case HIGH:
-                note.setPriority(Priority.HIGH);
+                priority = Priority.HIGH;
                 break;
         }
+        Note note = new Note(noteThrift.getId(), noteThrift.getName(), noteThrift.getDescription(), priority);
         return note;
     }
 
     public NoteThrift toThriftNote() {
-        NoteThrift noteThrift = new NoteThrift();
-        noteThrift.setId(this.id);
-        noteThrift.setName(this.name);
-        noteThrift.setDescription(this.description);
+        PriorityThrift priorityThrift = PriorityThrift.LOW;
         switch (this.priority) {
             case LOW:
-                noteThrift.setPriority(PriorityThrift.LOW);
+                priorityThrift = PriorityThrift.LOW;
                 break;
             case MEDIUM:
-                noteThrift.setPriority(PriorityThrift.MEDIUM);
+                priorityThrift = PriorityThrift.MEDIUM;
                 break;
             case HIGH:
-                noteThrift.setPriority(PriorityThrift.HIGH);
+                priorityThrift = PriorityThrift.HIGH;
                 break;
         }
+        NoteThrift noteThrift = new NoteThrift(this.id, this.name, this.description, priorityThrift);
         return noteThrift;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
-
 
 }

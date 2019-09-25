@@ -18,23 +18,24 @@ public class NoteServiceImplementation implements NoteService {
     NoteDao noteDao;
 
     @Override
-    public int createNote(Note note) {
+    public Note createNote(Note note) {
         return noteDao.saveNote(note);
     }
 
     @Override
     public List<Note> readNote() {
-        return noteDao.read();
+        return noteDao.listNote();
     }
 
     @Override
-    public void updateNote(Note note) {
+    public Note updateNote(Note note) {
         noteDao.update(note);
+        return note;
     }
 
     @Override
-    public void deleteNote(int id) {
-        noteDao.deleteNote(id);
+    public Note deleteNote(int id) {
+        return (noteDao.deleteNote(id));
     }
 
     @Override

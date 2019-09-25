@@ -19,11 +19,11 @@ service NoteServiceThrift {
 
     string sayHello();
 
-    int createNote(1:NoteThrift note);
+    NoteThrift createNote(1:NoteThrift note);
 
     list<NoteThrift> readNote();
 
-    void updateNote(1:NoteThrift note);
+    NoteThrift updateNote(1:NoteThrift note);
 
-    void deleteNote(1:int id);
+    NoteThrift deleteNote(1:int id);
 }

@@ -1,7 +1,9 @@
 package com.todo.demo;
 
+import com.todo.demo.Note.Priority;
 import com.todo.demo.thrift.gen.NoteServiceThrift;
 import com.todo.demo.thrift.gen.NoteThrift;
+import com.todo.demo.thrift.gen.PriorityThrift;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TJSONProtocol;
@@ -30,6 +32,7 @@ public class ThriftClient
         TProtocol protocol = new TJSONProtocol(tHttpClient);
 
         client = new NoteServiceThrift.Client(protocol);
+
         String result = client.sayHello();
         System.out.println("Return from server: " + result);
 
@@ -38,6 +41,21 @@ public class ThriftClient
             System.out.println("Notes " + nt.toString());
         }
 
+        NoteThrift noteThrift = client.createNote(new NoteThrift(17, "Hospital", "Complete hospital tasks", PriorityThrift.MEDIUM));
+        System.out.println("Note Created: " + noteThrift.toString());
+
+        List<NoteThrift> addedNote = client.readNote();
+        for (NoteThrift nt:addedNote) {
+            System.out.println("Notes " + nt.toString());
+        }
+
+        NoteThrift delNoteThrift = client.deleteNote(15);
+        System.out.println("Deleted note : " + delNoteThrift.toString());
+
+
+        noteThrift.setId(2);
+        NoteThrift noteThrift1 = client.updateNote(noteThrift);
+        System.out.println("Updated note: " + noteThrift1);
     }
 
 }

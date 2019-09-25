@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class NoteDaoImpl implements NoteDao {
@@ -15,24 +16,38 @@ public class NoteDaoImpl implements NoteDao {
     NoteRepository noteRepository;
 
     @Override
-    public int saveNote(Note note) {
+    public Note saveNote(Note note) {
+        int id = note.getId();
+        if (noteRepository.existsById(id)) {
+            note.setId((int) noteRepository.count());
+        }
         noteRepository.insert(note);
-        return note.getId();
+        return note;
     }
 
     @Override
-    public List<Note> read() {
+    public List<Note> listNote() {
         return noteRepository.findAll();
     }
 
     @Override
-    public void update(Note note) {
+    public Note update(Note note) {
         noteRepository.save(note);
+        return note;
     }
 
     @Override
-    public void deleteNote(int id) {
-        noteRepository.deleteById(id);
+    public Note deleteNote(int id) {
+        List<Note> noteList = noteRepository.findAll();
+        for(Note n:noteList) {
+            if (n.getId() == id) {
+                noteRepository.deleteById(id);
+                return n;
+            }
+        }
+        // No Node found with id
+        System.out.println("Note to be deleted does not exist");
+        return null;
     }
 
     @Override

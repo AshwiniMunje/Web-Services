@@ -11,10 +11,10 @@ import java.util.List;
 
 public interface NoteDao {
 
-    int saveNote(Note note);
-    List<Note> read();
-    void update(Note note);
-    void deleteNote(int id);
     public String sayHello();
+    Note saveNote(Note note);
+    List<Note> listNote();
+    Note update(Note note);
+    Note deleteNote(int id);
 
 }
