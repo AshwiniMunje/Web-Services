@@ -4,8 +4,13 @@ import com.todo.demo.Note.Note;
 import com.todo.demo.Repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,13 +26,18 @@ public class NoteDaoImpl implements NoteDao {
         if (noteRepository.existsById(id)) {
             note.setId((int) noteRepository.count());
         }
-        noteRepository.insert(note);
+        noteRepository.save(note);
         return note;
     }
 
     @Override
     public List<Note> listNote() {
-        return noteRepository.findAll();
+        int pageNo = 0, pageSize = 5;
+        String sortBy = "id";
+        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
+        Page<Note> page = noteRepository.findAll(pageable);
+        if (page.hasContent()) return page.getContent();
+        else return new ArrayList<Note>();
     }
 
     @Override
@@ -38,8 +48,7 @@ public class NoteDaoImpl implements NoteDao {
 
     @Override
     public Note deleteNote(int id) {
-        List<Note> noteList = noteRepository.findAll();
-        for(Note n:noteList) {
+        for(Note n:noteRepository.findAll()) {
             if (n.getId() == id) {
                 noteRepository.deleteById(id);
                 return n;

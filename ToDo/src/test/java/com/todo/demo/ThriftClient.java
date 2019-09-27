@@ -41,7 +41,7 @@ public class ThriftClient
             System.out.println("Notes " + nt.toString());
         }
 
-        NoteThrift noteThrift = client.createNote(new NoteThrift(17, "Hospital", "Complete hospital tasks", PriorityThrift.MEDIUM));
+        NoteThrift noteThrift = client.createNote(new NoteThrift(55, "Hospital", "Complete hospital tasks", PriorityThrift.MEDIUM));
         System.out.println("Note Created: " + noteThrift.toString());
 
         List<NoteThrift> addedNote = client.readNote();
@@ -49,11 +49,11 @@ public class ThriftClient
             System.out.println("Notes " + nt.toString());
         }
 
-        NoteThrift delNoteThrift = client.deleteNote(15);
+        NoteThrift delNoteThrift = client.deleteNote(2);
         System.out.println("Deleted note : " + delNoteThrift.toString());
 
 
-        noteThrift.setId(2);
+        noteThrift.setId(63);
         NoteThrift noteThrift1 = client.updateNote(noteThrift);
         System.out.println("Updated note: " + noteThrift1);
     }
