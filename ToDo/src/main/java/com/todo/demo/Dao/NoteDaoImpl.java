@@ -3,7 +3,6 @@ package com.todo.demo.Dao;
 import com.todo.demo.Note.Note;
 import com.todo.demo.Repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class NoteDaoImpl implements NoteDao {
@@ -31,9 +29,9 @@ public class NoteDaoImpl implements NoteDao {
     }
 
     @Override
-    public List<Note> listNote() {
-        int pageNo = 0, pageSize = 5;
-        String sortBy = "id";
+    public List<Note> listNote(Integer pageNo, Integer pageSize, String sortBy) {
+//        int pageNo = 0, pageSize = 5;
+//        String sortBy = "id";
         Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
         Page<Note> page = noteRepository.findAll(pageable);
         if (page.hasContent()) return page.getContent();

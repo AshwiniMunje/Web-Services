@@ -39,9 +39,12 @@ public class NoteResource {
     }
 
     @GetMapping("/all")
-    public List<Note> getAllNotes() {
+    public List<Note> getAllNotes(
+            @RequestParam(defaultValue = "1", required = false) Integer pageNo,
+            @RequestParam(defaultValue = "5", required = false) Integer pageSize,
+            @RequestParam(defaultValue = "id", required = false) String sortBy) {
         //logger.info("Reading all notes");
-        return noteService.readNote();
+        return noteService.readNote(pageNo, pageSize, sortBy);
     }
 
     @PutMapping(value="/update/{note-id}")

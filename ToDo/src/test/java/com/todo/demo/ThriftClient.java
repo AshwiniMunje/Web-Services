@@ -36,24 +36,24 @@ public class ThriftClient
         String result = client.sayHello();
         System.out.println("Return from server: " + result);
 
-        List<NoteThrift> allNotes = client.readNote();
+        List<NoteThrift> allNotes = client.readNote(1,2,"id");
         for (NoteThrift nt:allNotes) {
             System.out.println("Notes " + nt.toString());
         }
 
-        NoteThrift noteThrift = client.createNote(new NoteThrift(55, "Hospital", "Complete hospital tasks", PriorityThrift.MEDIUM));
+        NoteThrift noteThrift = client.createNote(new NoteThrift(77, "Hospital", "Complete hospital tasks", PriorityThrift.MEDIUM));
         System.out.println("Note Created: " + noteThrift.toString());
 
-        List<NoteThrift> addedNote = client.readNote();
+        List<NoteThrift> addedNote = client.readNote(1,2,"id");
         for (NoteThrift nt:addedNote) {
             System.out.println("Notes " + nt.toString());
         }
 
-        NoteThrift delNoteThrift = client.deleteNote(2);
+        NoteThrift delNoteThrift = client.deleteNote(77);
         System.out.println("Deleted note : " + delNoteThrift.toString());
 
 
-        noteThrift.setId(63);
+        noteThrift.setId(69);
         NoteThrift noteThrift1 = client.updateNote(noteThrift);
         System.out.println("Updated note: " + noteThrift1);
     }

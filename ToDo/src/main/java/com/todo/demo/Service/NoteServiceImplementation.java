@@ -2,10 +2,6 @@ package com.todo.demo.Service;
 
 import com.todo.demo.Dao.NoteDao;
 import com.todo.demo.Note.Note;
-import com.todo.demo.Repository.NoteRepository;
-import com.todo.demo.thrift.gen.NoteServiceThrift;
-import com.todo.demo.thrift.gen.NoteThrift;
-import org.apache.thrift.TException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +19,8 @@ public class NoteServiceImplementation implements NoteService {
     }
 
     @Override
-    public List<Note> readNote() {
-        return noteDao.listNote();
+    public List<Note> readNote(Integer pageNo, Integer pageSize, String sortBy) {
+        return noteDao.listNote(pageNo, pageSize, sortBy);
     }
 
     @Override

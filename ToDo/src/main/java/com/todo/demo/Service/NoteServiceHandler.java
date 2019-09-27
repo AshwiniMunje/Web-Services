@@ -1,7 +1,6 @@
 package com.todo.demo.Service;
 
 import com.todo.demo.Note.Note;
-import com.todo.demo.Note.Priority;
 import com.todo.demo.thrift.gen.NoteServiceThrift;
 import com.todo.demo.thrift.gen.NoteThrift;
 import org.apache.thrift.TException;
@@ -33,9 +32,9 @@ public class NoteServiceHandler implements NoteServiceThrift.Iface {
     }
 
     @Override
-    public List<NoteThrift> readNote() throws TException {
+    public List<NoteThrift> readNote(int pageNo, int pageSize, String sortBy) throws TException {
         List<NoteThrift> noteThriftList = new ArrayList<>();
-        for (Note n:noteService.readNote()) {
+        for (Note n:noteService.readNote(pageNo, pageSize, sortBy)) {
             noteThriftList.add(n.toThriftNote());
         }
         return noteThriftList;

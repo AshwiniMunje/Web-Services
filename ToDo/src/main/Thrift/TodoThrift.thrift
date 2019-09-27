@@ -21,7 +21,7 @@ service NoteServiceThrift {
 
     NoteThrift createNote(1:NoteThrift note);
 
-    list<NoteThrift> readNote();
+    list<NoteThrift> readNote(1:int pageNo, 2:int pageSize, 3:string sortBy);
 
     NoteThrift updateNote(1:NoteThrift note);
 
