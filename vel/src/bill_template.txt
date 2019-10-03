@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<head>
+    <title>OYO</title>
+    <style>
+    table, th {
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 15px;
+      width: 400px;
+      text-align: left;
+    }
+    </style>
+</head>
+
+<body>
+
+    <div style="text-align: center">
+        <p><b> Order no: </b> $OrderId</p>
+        <p>$VendorName, $VendorAddress </p>
+    </div>
+
+    <div>
+        <p style="float:left"><b> Customer: </b> $CustomerName </p>
+        <p style="float:right"><b> Bill number: </b> $BillNo </p>
+    </div>
+    <br> <br>
+    <div>
+        <p> $Date at $Time </p>
+    </div>
+
+
+    <div>
+        <div>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                    </tr>
+                     #foreach($item in $ItemList) <tr>
+                        <td>$item.getDescription()</td>
+                        <td>$item.getQuantity()</td>
+                        <td>$item.getRate()</td>
+                        <td>$item.getAmount()</td>
+                    </tr> #end
+                </tbody>
+            </table>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><b> GST: </b></td>
+                        <td> INR $GST </td>
+                    </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td><b> Packaging charges: </b></td>
+                            <td> INR $PackCharges </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><b> Total: </b> </td>
+                        <td> INR $Total </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <p> <b> Mode of payment: </b> $ModeOfPayment</p>
+        </div>
+
+        <div>
+            <p style="text-align: center"> ****************** Thank you ****************** </p>
+        </div>
+    </div>
+</body>
