@@ -42,17 +42,9 @@ public class BillGeneration {
 
         Template template = velocityEngine.getTemplate("/src/bill_template.txt");
         VelocityContext velocityContext = new VelocityContext();
+        velocityContext.put("Order", order);
 
-        velocityContext.put("CustomerName", order.customerName);
-        velocityContext.put("BillNo", order.billNo);
-        velocityContext.put("Date", dtfDate.format(nowDate));
-        velocityContext.put("Time", dtfTime.format(nowTime));
-        velocityContext.put("ItemList", order.items);
         velocityContext.put("Total", total);
-        velocityContext.put("ModeOfPayment", order.modeOfPayment);
-        velocityContext.put("VendorName", order.vendorName);
-        velocityContext.put("OrderId", order.orderId);
-        velocityContext.put("VendorAddress", order.vendorAddress);
         velocityContext.put("GST", GST);
         velocityContext.put("PackCharges", packCharge);
 

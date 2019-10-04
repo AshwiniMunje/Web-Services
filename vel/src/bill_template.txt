@@ -24,13 +24,14 @@
 <body>
 
     <div style="text-align: center">
-        <p><b> Order no: </b> $OrderId</p>
-        <p>$VendorName, $VendorAddress </p>
+        #set ($orderRef = $Order)
+        <p><b> Order no: </b> $orderRef.getOrderId()</p>
+        <p>$VendorName, $orderRef.getVendorAddress() </p>
     </div>
 
     <div>
-        <p style="float:left"><b> Customer: </b> $CustomerName </p>
-        <p style="float:right"><b> Bill number: </b> $BillNo </p>
+        <p style="float:left"><b> Customer: </b> $orderRef.getCustomerName() </p>
+        <p style="float:right"><b> Bill number: </b> $orderRef.getBillNo() </p>
     </div>
     <br> <br>
     <div>
@@ -48,7 +49,7 @@
                         <th>Rate</th>
                         <th>Amount</th>
                     </tr>
-                     #foreach($item in $ItemList) <tr>
+                     #foreach($item in $orderRef.getItems()) <tr>
                         <td>$item.getDescription()</td>
                         <td>$item.getQuantity()</td>
                         <td>$item.getRate()</td>
@@ -82,7 +83,7 @@
         </div>
 
         <div>
-            <p> <b> Mode of payment: </b> $ModeOfPayment</p>
+            <p> <b> Mode of payment: </b> $orderRef.getModeOfPayment()</p>
         </div>
 
         <div>
